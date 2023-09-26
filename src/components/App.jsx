@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 
 import ContactForm from './ContactForm/ContactForm';
-import { FormContainer } from './formContainer/formDiv_module';
+import { FormContainer } from './formContainer/formDiv.styled';
 import { Filter } from './Filter/Filter';
-import { nanoid } from 'nanoid';
 
 export class App extends Component{
   state = {
