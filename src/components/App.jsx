@@ -6,10 +6,6 @@ import { Filter } from './Filter/Filter';
 import { nanoid } from 'nanoid';
 
 export class App extends Component{
-  // state = {
-  //   contacts: [],
-  //   filter: '',
-  // };
   state = {
     name: '',
     number: ''
@@ -19,17 +15,14 @@ export class App extends Component{
     this.setState({ filter: e.target.value });
   };
 
-  getContact = contactsData => {    
-    this.setState(prevState => {
+ getContact = contactsData => {
+    console.log('contactsData:', contactsData);
+    this.setState(() => {
       return {
-        name: [contactsData, ...prevState.name]
+        name: [contactsData, ...this.state.name],
+        
       }
     });
-  };
-
-  handleSubmit = e => {
-    e.preventDefault();
-    
   };
 
   handleDelete = e => {
