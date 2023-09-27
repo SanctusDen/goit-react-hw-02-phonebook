@@ -1,32 +1,15 @@
 import React, { Component } from "react"
 import { Form } from "components/formContainer/formDiv.styled";
 import { Label, Field, SubmitBtn } from "./ContactForm-module";
-// import { nanoid } from "nanoid";
 
 export default class ContactForm extends Component {
   state = {
-    contacts: [],
-    filter: '',
+    name: '',
+    number: '',
   };
-    
+
   handleChange = e => {
     this.setState({ [e.target.name]: e.target.value });
-  };
-
-  handleSubmit = e => {
-    e.preventDefault();
-
-    const contactsData = {
-      ...this.state(),
-      name: this.setState(),
-      number: this.setState(),
-    }
-      // const contactsData = [
-      //   ...prevState.contacts,
-      //   { name: value, number: number.value },
-      // ];
-    
-    this.props.getContact(contactsData);
   };
     
   render() {
