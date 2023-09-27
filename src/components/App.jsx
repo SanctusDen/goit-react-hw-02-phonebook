@@ -67,6 +67,7 @@ export class App extends Component{
         <h2>Contacts</h2>
         <Filter handleFilterChange={this.handleFilterChange} />
         <ContactList 
+          contacts = {this.state.contacts}
           handleDelete={this.handleDelete}
         />
       </FormContainer>
