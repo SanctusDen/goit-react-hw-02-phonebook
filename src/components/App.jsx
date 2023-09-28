@@ -4,12 +4,12 @@ import ContactForm from './ContactForm/ContactForm';
 import { FormContainer } from './formContainer/formDiv.styled';
 import { Filter } from './Filter/Filter';
 import { nanoid } from 'nanoid';
-import { ContactList } from './ContactList/ContactList';
+import { ContactList } from './List/ContactList';
 
 export class App extends Component{
   state = {
-    name: '',
-    number: ''
+    contacts: [],
+    name: ''
   };
 
   handleFilterChange = e => {

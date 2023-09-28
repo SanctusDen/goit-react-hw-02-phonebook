@@ -16,8 +16,8 @@ export class ContactList extends Component {
             number={number}
             handleDeleteBtnClick={handleDelete}
           ></Contact>
-        );
-        })};
+        )
+        })}
       </List>
     );
   };
