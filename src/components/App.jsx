@@ -3,13 +3,13 @@ import React, { Component } from 'react'
 import ContactForm from './ContactForm/ContactForm';
 import { FormContainer } from './formContainer/formDiv.styled';
 import { Filter } from './Filter/Filter';
-import { nanoid } from 'nanoid';
 import { ContactList } from './List/ContactList';
+// import { nanoid } from 'nanoid';
 
 export class App extends Component{
   state = {
     contacts: [],
-    name: ''
+    filter: "",
   };
 
   handleFilterChange = e => {
@@ -35,37 +35,35 @@ export class App extends Component{
     });
   };
 
-  handleSubmit = e => {
-    e.preventDefault();
+  onSubmit = (newContact) => {
+    // const isExist = this.prevState.contacts.some(
+    //     contact => contact.name.toLowerCase() === this.name.toLowerCase()
+    //   );
+    // if (isExist) {
+    //   alert(`${this.name} is already in contacts.`);
+    //   return
+    // };
+    this.setState(prev => ({ contacts: [...prev.contacts, newContact] }))
+  };
 
-    const { name, number } = e.target.elements;
-    const value = name.value;
-    let id = nanoid();
-    this.setState(prevState => {
-      const isExist = prevState.contacts.some(
-        contact => contact.name.toLowerCase() === value.toLowerCase()
-      );
-      if (isExist) {
-        alert(`${name} is already in contacts.`);
-        return
-      }
-      const updatedContacts = [
-        ...prevState.contacts,
-        { name: value, number: number.value, id },
-      ];
-      e.target.reset();
-      return { contacts: updatedContacts };
-    })
+  getFoundContacts = () => {
+    const { contacts, filter } = this.state;
+
+    const normalizedFilter = filter.toLowerCase();
+    return contacts.filter(contact =>
+      contact.name.toLowerCase().includes(normalizedFilter)
+    );
   };
 
   render() {
+    const {filter} = this.setState 
     return (
-      <FormContainer getContact={this.getContact}>
+      <FormContainer getContact={this.getContact} >
         <h1>Phonebook</h1>
-        <ContactForm handleSubmit={this.handleSubmit} />
+        <ContactForm onSubmit={this.onSubmit} />
 
         <h2>Contacts</h2>
-        <Filter handleFilterChange={this.handleFilterChange} />
+        <Filter handleFilterChange={this.handleFilterChange} filter={ filter} />
         <ContactList 
           contacts = {this.state.contacts}
           handleDelete={this.handleDelete}

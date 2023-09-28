@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import { Form } from "components/formContainer/formDiv.styled";
 import { Label, Field, SubmitBtn } from "./ContactForm-module";
+import { nanoid } from "nanoid";
 
 export default class ContactForm extends Component {
   state = {
@@ -11,12 +12,27 @@ export default class ContactForm extends Component {
   handleChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
+
+  handleSubmit = e => {
+    e.preventDefault();
+
+    this.props.onSubmit({
+      name: this.state.name,
+      number: this.state.number,
+      id: nanoid()
+    })
+
+    this.setState({
+      name: '',
+      number: '',
+    })
+  };
     
   render() {
     const { handleChange } = this;
 
     return (
-      <Form onSubmit={this.handleSubmit}>
+      <Form onSubmit={this.handleSubmit} getContact ={this.getContact}>
         <Label htmlFor="name">Name</Label>
         <Field
           onChange={handleChange}
@@ -37,7 +53,7 @@ export default class ContactForm extends Component {
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
         />
-        <SubmitBtn>Add Contact</SubmitBtn>
+        <SubmitBtn type="submit">Add Contact</SubmitBtn>
       </Form>
     );
   };

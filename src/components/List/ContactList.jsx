@@ -4,7 +4,7 @@ import { Contact } from 'components/Contact/Contact';
 
 export class ContactList extends Component {
   render() {
-    const { contacts, handleDelete } = this.props;
+    const { visibleContacts, contacts, handleDelete } = this.props;
     return (
       <List>
         {contacts.map(({ name, number, id }) => {
@@ -14,6 +14,7 @@ export class ContactList extends Component {
             id={id}
             name={name}
             number={number}
+            visibleContacts={visibleContacts}
             handleDeleteBtnClick={handleDelete}
           ></Contact>
         )
