@@ -15,7 +15,7 @@ export class ContactList extends Component {
             name={name}
             number={number}
             visibleContacts={visibleContacts}
-            handleDeleteBtnClick={handleDelete}
+            handleDelete={handleDelete}
           ></Contact>
         )
         })}
