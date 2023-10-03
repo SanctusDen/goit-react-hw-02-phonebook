@@ -4,7 +4,6 @@ import ContactForm from './ContactForm/ContactForm';
 import { FormContainer } from './formContainer/formDiv.styled';
 import { Filter } from './Filter/Filter';
 import { ContactList } from './List/ContactList';
-// import { nanoid } from 'nanoid';
 
 export class App extends Component{
   state = {
@@ -36,13 +35,14 @@ export class App extends Component{
   };
 
   onSubmit = (newContact) => {
-    // const isExist = this.prevState.contacts.some(
-    //     contact => contact.name.toLowerCase() === this.name.toLowerCase()
-    //   );
-    // if (isExist) {
-    //   alert(`${this.name} is already in contacts.`);
-    //   return
-    // };
+
+    const isExist = this.state.contacts.some(
+        contact => contact.name.toLowerCase() === newContact.name.toLowerCase()
+      );
+    if (isExist) {
+      alert(`${newContact.name} is already in contacts.`);
+      return
+    };
     this.setState(prev => ({ contacts: [...prev.contacts, newContact] }))
   };
 

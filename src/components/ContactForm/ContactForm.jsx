@@ -16,31 +16,16 @@ export default class ContactForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    const { name, number } = e.target.elements;
-    const value = name.value;
-    let id = nanoid();
-
     this.props.onSubmit({
       name: this.state.name,
       number: this.state.number,
       id: nanoid()
     })
-     const isExist = this.prevState.contacts.some(
-        contact => contact.name.toLowerCase() === this.name.toLowerCase()
-      );
-    if (isExist) {
-      alert(`${this.name} is already in contacts.`);
-      return
-    };
-
-    const updatedContacts = [this.prevState.contacts,
-        { name: value, number: number.value, id },
-    ];
+    
     this.setState({
       name: '',
       number: '',
     })
-    return { contacts: updatedContacts };
   };
   
   render() {
